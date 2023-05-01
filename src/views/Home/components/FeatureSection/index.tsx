@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from 'components/Layout'
-import { HeadingOfSection } from '../HeadingOfSection'
 import { media } from 'styles/media'
 import { floatingAnim } from 'styles/animations'
+import { LINK } from 'components/Nav/Menu/contants'
+import { HeadingOfSection } from '../HeadingOfSection'
 
 const Wrapper = styled.div`
   position: relative;
@@ -94,7 +95,7 @@ export const FeatureSection: React.FC = () => {
     },
   ]
   return (
-    <Wrapper>
+    <Wrapper id="feature">
       <Container>
         <div>
           <HeadingOfSection>Tại sao chọn WOO Group Kids</HeadingOfSection>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import throttle from 'lodash/throttle'
 import styled, { css } from 'styled-components'
-import { DropdownProps, PositionProps, Position } from './types'
 import { colors } from 'styles/colors'
+import { DropdownProps, PositionProps, Position } from './types'
 
 const getLeft = ({ position }: PositionProps) => {
   if (position === 'top-right') {

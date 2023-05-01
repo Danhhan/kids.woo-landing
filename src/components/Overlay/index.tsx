@@ -58,7 +58,6 @@ interface OverlayProps extends BoxProps {
 }
 const Overlay: FC<React.PropsWithChildren<OverlayProps>> = (props) => {
   const { isUnmounting } = props
-  console.log(isUnmounting)
   return (
     <>
       <BodyLock />

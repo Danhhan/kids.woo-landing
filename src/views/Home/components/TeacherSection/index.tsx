@@ -3,10 +3,11 @@ import Slider from 'react-slick'
 import React from 'react'
 import styled from 'styled-components'
 import { sizes, media } from 'styles/media'
-import { HeadingOfSection } from '../HeadingOfSection'
 import Link from 'next/link'
 import { CalendarIcon, StarIcon } from 'components/Svg'
 import { colors } from 'styles/colors'
+import { LINK } from 'components/Nav/Menu/contants'
+import { HeadingOfSection } from '../HeadingOfSection'
 
 const Wrapper = styled.div``
 const TeacherCard = styled.div`
@@ -159,7 +160,7 @@ export const TeacherSection: React.FC = () => {
     },
   ]
   return (
-    <Wrapper>
+    <Wrapper id="teacher">
       <Container>
         <div className="w-[280px] md:w-full">
           <HeadingOfSection>Đội ngũ giảng viên tại WOO Group Kids</HeadingOfSection>
@@ -182,7 +183,7 @@ export const TeacherSection: React.FC = () => {
                     <Link href="/teachers/1">
                       <span className="cursor-pointer hover:underline hover:text-text-light f18Bold mr-1">{name}</span>
                     </Link>
-                    <span className={`fi fi-${nationalCode}`}></span>
+                    <span className={`fi fi-${nationalCode}`} />
                   </div>
                   <div className="flex justify-between">
                     <div>

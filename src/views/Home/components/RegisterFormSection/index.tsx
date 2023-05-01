@@ -1,9 +1,20 @@
 import { Container } from 'components/Layout'
-import { CloseIcon, MinusIcon, PlusIcon } from 'components/Svg'
-import React from 'react'
+import { CircleCloseIcon, MinusIcon, PlusIcon } from 'components/Svg'
+import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { colors } from 'styles/colors'
 import { media } from 'styles/media'
+import Select from 'components/Select'
+import { useMutation } from '@tanstack/react-query'
+import { createContactFn } from 'apis/contact.api'
+import { IContactInput } from 'types/IContact'
+import { IErrorForm } from 'types/IErrorForm'
+import { isAxiosError } from 'utils/helpers'
+import { INTEREST_COURSE } from 'config/constants/contact'
+import ErrorForm from 'components/ErrorForm'
+import { RegisterSuccessModal } from 'components/RegisterSuccessModal'
+import LoadingBtn from 'components/Button/LoadingBtn'
 
 const Wrapper = styled.div`
   background-color: #fff1d7;
@@ -11,8 +22,16 @@ const Wrapper = styled.div`
   ${media.md`
     padding: 40px 0 82px 0;
   `}
+  position: relative;
+  .plane-img {
+    position: absolute;
+    width: 285.14px;
+    bottom: 31px;
+    left: 230px;
+  }
 `
 const StyledForm = styled.form`
+  position: relative;
   margin-top: 13.5px;
   padding: 16px;
   background-color: ${colors.primary.dark2};
@@ -31,9 +50,11 @@ const StyledForm = styled.form`
     margin-top: 16px;
     input {
       width: 100%;
-      padding: 12px 8px;
+      padding: 12px 16px;
       outline: none;
       border: none;
+      border: 1px solid #e6e8ef;
+      border-radius: 8px;
     }
   }
   button {
@@ -44,6 +65,7 @@ const StyledForm = styled.form`
     border-radius: 8px;
     padding: 12px 16px;
     margin-top: 16px;
+    min-width: 283px;
   }
   ${media.md`
     width: 679px;
@@ -53,34 +75,120 @@ const StyledForm = styled.form`
 `
 
 export const RegisterFormSection: React.FC = () => {
+  const [isOpenSuccessModal, setIsOpenSuccessModal] = useState(false)
+  // Submit contact Form
+  const {
+    register,
+    setValue,
+    formState: { errors },
+    handleSubmit,
+    reset,
+    getValues,
+    control,
+  } = useForm<IContactInput>({
+    defaultValues: {
+      interest_course: null,
+      parent_email: null,
+      parent_name: null,
+      parent_phone: null,
+      skill_improvement: null,
+      student_age: null,
+      student_name: null,
+      utm_campaign: null,
+      utm_medium: null,
+      utm_source: null,
+    },
+  })
+  // API create contact Mutation
+  const {
+    mutate: createContact,
+    isLoading,
+    error,
+  } = useMutation((contactData: IContactInput) => createContactFn(contactData), {
+    onSuccess: () => {
+      setIsOpenSuccessModal(true)
+      reset()
+    },
+  })
+
+  // Error handle
+  const errorForm = useMemo(() => {
+    if (isAxiosError<{ error: IErrorForm }>(error)) {
+      return {
+        error: {
+          code: 500,
+          message: 'Không thể đăng ký ngay lúc này! vui lòng thử lại sau!',
+        },
+      }
+    }
+    return undefined
+  }, [error])
+  const onSubmit: SubmitHandler<IContactInput> = (data) => {
+    createContact(data)
+  }
+  console.log(getValues('interest_course'))
   return (
-    <Wrapper>
+    <Wrapper id="register-form">
+      <div className="plane-img">
+        <img src="/images/right-plane.png" />
+      </div>
       <Container>
         <h2 className="uppercase f18Bold md:text-4xl text-orange md:text-center">ĐĂNG KÝ TƯ VẤN VÀ HỌC THỬ MIỄN PHÍ</h2>
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <div className="icon-group flex flex-1 gap-[7px]">
-            <CloseIcon />
+            <CircleCloseIcon />
             <MinusIcon />
             <PlusIcon />
           </div>
-          <div className="flex flex-col gap-[10px] content">
+          <div className="flex flex-col gap-[10px] content mb-4">
             <div className="flex-1">
-              <input placeholder="Họ và tên phụ huynh" />
+              <input {...register('parent_name', { required: true })} placeholder="Họ và tên phụ huynh" />
+              {errors.parent_name && (
+                <div className="error msg" role="alert">
+                  Vui lòng nhập thông tin của trường này!
+                </div>
+              )}
             </div>
             <div className="flex-1">
-              <input placeholder="Họ và tên học sinh" />
+              <input {...register('student_name', { required: true })} placeholder="Họ và tên học sinh" />
             </div>
             <div className="flex-1">
-              <input placeholder="Email của phụ huynh" />
+              <input {...register('parent_phone', { required: true })} placeholder="Số điện thoại của phụ huynh" />
+              {errors.parent_phone && (
+                <div className="error msg" role="alert">
+                  Vui lòng nhập thông tin của trường này!
+                </div>
+              )}
             </div>
             <div className="flex-1">
-              <input placeholder="Bé hiện mấy tuổi" />
+              <input type="number" min={1} max={100} {...register('student_age')} placeholder="Bé hiện mấy tuổi" />
+            </div>
+            <div className="flex-1">
+              <Controller
+                name="interest_course"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select
+                    placeHolderText="Phụ huynh quan tâm đến phát triển kỹ năng tiếng Anh nào của bé"
+                    options={INTEREST_COURSE}
+                    onOptionChange={(option) => {
+                      onChange(option.value)
+                    }}
+                    valueOfSelect={value}
+                  />
+                )}
+              />
             </div>
           </div>
-          <button>Gửi thông tin ngay</button>
+          {errorForm && <ErrorForm error={errorForm?.error} />}
+          <button type="submit">
+            {!isLoading && <span>Gửi thông tin ngay</span>}
+            {isLoading && <LoadingBtn />}
+          </button>
           <p className="f12Regular mt-4 italic">Chuyên viên tư vấn sẽ liên hệ và hỗ trợ ngay</p>
         </StyledForm>
       </Container>
+      <RegisterSuccessModal isOpenModal={isOpenSuccessModal} onClose={() => setIsOpenSuccessModal(false)} />
     </Wrapper>
   )
 }

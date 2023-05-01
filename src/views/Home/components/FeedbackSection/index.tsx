@@ -1,4 +1,5 @@
 import { Container } from 'components/Layout'
+import { LINK } from 'components/Nav/Menu/contants'
 import React from 'react'
 import Slider from 'react-slick'
 import styled from 'styled-components'
@@ -91,7 +92,7 @@ export const FeedbackSection: React.FC = () => {
     },
   ]
   return (
-    <Wrapper>
+    <Wrapper id="feedback">
       <Container>
         <div className="w-[280px] md:w-full">
           <HeadingOfSection>Phụ huynh và học sinh nói gì sau khi học tại WOO Group Kids</HeadingOfSection>

@@ -24,6 +24,7 @@ export const sizes = {
   sm: 640,
   md: 768,
   lg: 1024,
+  '1045px': 1045,
   '1200px': 1200,
   xlg: 1280,
   xl: 1440,

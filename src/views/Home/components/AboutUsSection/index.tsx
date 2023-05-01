@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from 'components/Layout'
-import { HeadingOfSection } from '../HeadingOfSection'
-import { CloseIcon, MinusIcon, PlusIcon } from 'components/Svg'
+import { CircleCloseIcon, MinusIcon, PlusIcon } from 'components/Svg'
 import { colors } from 'styles/colors'
 import { media } from 'styles/media'
+import { LINK } from 'components/Nav/Menu/contants'
+import { HeadingOfSection } from '../HeadingOfSection'
 
 const Wrapper = styled.div`
   position: relative;
@@ -75,7 +76,7 @@ const PreviewVideoWrap = styled.div`
 
 export const AboutUsSection: React.FC = () => {
   return (
-    <Wrapper>
+    <Wrapper id="about">
       <Container className="relative">
         <div className="flex gap-10">
           <div className="flex-1 content">
@@ -90,7 +91,7 @@ export const AboutUsSection: React.FC = () => {
                 <div className="flex gap-4 mb-[18px]">
                   <img className="logo" src="/images/logo-2.png" />
                   <div className="icon-group flex flex-1 gap-[7px]">
-                    <CloseIcon />
+                    <CircleCloseIcon />
                     <MinusIcon />
                     <PlusIcon />
                   </div>
@@ -120,7 +121,7 @@ export const AboutUsSection: React.FC = () => {
               <div className="flex gap-4 mb-[18px]">
                 <img className="logo" src="/images/logo-2.png" />
                 <div className="icon-group flex flex-1 gap-[7px]">
-                  <CloseIcon />
+                  <CircleCloseIcon />
                   <MinusIcon />
                   <PlusIcon />
                 </div>

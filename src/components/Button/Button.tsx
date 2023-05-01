@@ -1,24 +1,16 @@
-import React, { ReactElement } from 'react'
+import React, { ElementType } from 'react'
 import styled from 'styled-components'
+import dynamic from 'next/dynamic'
 import { colors } from 'styles/colors'
+import { LayoutProps, SpaceProps } from 'styled-system'
+import { PolymorphicComponentProps } from 'utils/polymorphic'
 
-const StyledButton = styled.button<{ fullWidth?: boolean }>`
-  background-color: ${colors.primary.main};
-  color: ${colors.common.black};
-  font-weight: 600;
-  line-height: 24px;
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
-  box-shadow: 0px 1px 2px rgba(31, 41, 55, 0.08);
-  border-radius: 8px;
-`
-interface ButtonProps {
-  children: React.ReactElement
-  fullWidth?: boolean
-  className?: string
+export interface BaseButtonProps extends LayoutProps, SpaceProps {}
+export type ButtonProps<P extends ElementType = "button"> = PolymorphicComponentProps<P, BaseButtonProps>;
+
+const Button = <E extends ElementType = 'button'>(props: ButtonProps<E>): JSX.Element => {
+  const { children, ...rest } = props
+
+  return <button {...rest}>{children}</button>
 }
-
-export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({ children, ...props }) => {
-  return <StyledButton {...props}>{children}</StyledButton>
-}
-
-export default Button
+export default Button;

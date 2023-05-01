@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import dynamic from 'next/dynamic'
 import { colors } from 'styles/colors'
-import { RegisterButton } from 'components/RegisterButton'
 import { Container } from 'components/Layout'
 import { media } from 'styles/media'
+import { RegisterButton } from 'components/RegisterButton'
 
 const Nav = dynamic(() => import('components/Nav'), { ssr: false })
 
@@ -47,6 +47,11 @@ const HeroContent = styled.div`
 const HeroImgWrap = styled.div``
 
 export const HeroSection: React.FC = () => {
+  const onScrollToView = useCallback((id: string) => {
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth',
+    })
+  }, [])
   return (
     <Wrapper>
       <Nav />
@@ -60,7 +65,14 @@ export const HeroSection: React.FC = () => {
                 Mở khóa các kỹ năng tiếng Anh cùng WOO Group From Zero to Fluent: English Conversation Made Easy!
               </p>
               <div className="mt-4">
-                <RegisterButton> NHận tư vấn miễn phí</RegisterButton>
+                <RegisterButton
+                  onClick={() => {
+                    onScrollToView('#register-form')
+                  }}
+                >
+                  {' '}
+                  NHận tư vấn miễn phí
+                </RegisterButton>
               </div>
             </HeroContent>
           </div>

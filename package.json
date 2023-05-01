@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start",
+    "start": "next start -p 8081",
     "prettier": "prettier --write .",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
@@ -23,12 +23,14 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.9.3",
+    "@hookform/resolvers": "^2.9.10",
     "@ramonak/react-progress-bar": "^5.0.3",
     "@tanstack/react-query": "^4.24.6",
     "axios": "^0.27.2",
     "babel-plugin-styled-components": "^2.0.7",
     "country-flag-icons": "^1.5.5",
     "flag-icons": "^6.6.6",
+    "framer-motion": "^10.12.4",
     "hoist-non-react-statics": "^3.3.2",
     "moment": "^2.29.4",
     "next": "12.2.0",
@@ -36,6 +38,7 @@
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.0.7",
     "react-loading-icons": "^1.1.0",
     "react-pdf": "^6.2.2",
     "react-search-autocomplete": "^8.3.1",
@@ -43,7 +46,8 @@
     "react-tooltip": "^5.7.5",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

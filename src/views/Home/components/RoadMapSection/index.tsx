@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from 'components/Layout'
-import { HeadingOfSection } from '../HeadingOfSection'
 import { media } from 'styles/media'
 import { floatingAnim } from 'styles/animations'
+import { LINK } from 'components/Nav/Menu/contants'
+import { HeadingOfSection } from '../HeadingOfSection'
 import { CambridgeProgram } from './CambridgeProgram'
 import { IELTSProgram } from './IELTSProgram'
 
@@ -210,7 +211,7 @@ export const RoadMapSection: React.FC = () => {
     },
   ]
   return (
-    <Wrapper>
+    <Wrapper id="roadmap">
       <Container>
         <HeadingOfSection>Lộ trình học WOO Group Kids</HeadingOfSection>
         <p className="text-blue1 f18Bold">Lộ trình đào tạo CEFR tại WOO GROUP</p>
@@ -241,8 +242,8 @@ export const RoadMapSection: React.FC = () => {
                     return (
                       <div className="item">
                         <p className="f18Bold uppercase">{name}</p>
-                        <p className={`f14Regular`}>{studyingHour}</p>
-                        <p className={`f14Regular`}>giờ</p>
+                        <p className="f14Regular">{studyingHour}</p>
+                        <p className="f14Regular">giờ</p>
                       </div>
                     )
                   })}

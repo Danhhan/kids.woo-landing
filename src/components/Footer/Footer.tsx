@@ -1,4 +1,4 @@
-//Comps
+// Comps
 import { Container } from 'components/Layout'
 import { BuildingIcon, EmailIcon, PhoneIcon, PositionIcon } from 'components/Svg'
 import { useTranslation } from 'contexts/Localization'

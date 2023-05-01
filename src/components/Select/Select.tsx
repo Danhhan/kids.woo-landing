@@ -2,19 +2,20 @@ import { Box, BoxProps } from 'components/Box'
 import { Text } from 'components/Text'
 import { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
+import { colors } from 'styles/colors'
 import { ArrowDownIcon } from '../Svg'
 
 const DropDownHeader = styled.div`
   width: 100%;
-  height: 40px;
+  /* height: 40px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 16px;
+  padding: 12px 16px;
   border-radius: 8px;
   transition: border-radius 0.15s;
-  background: #FAFAFA;
-  border: 1px solid #DEDEDE;
+  background: #fafafa;
+  border: 1px solid #dedede;
 `
 
 const DropDownListContainer = styled.div`
@@ -27,8 +28,8 @@ const DropDownListContainer = styled.div`
   transform-origin: top;
   opacity: 0;
   width: 100%;
-  background: #FAFAFA;
-  z-index: 1;
+  background: #fafafa;
+  z-index: 2;
 `
 
 const DropDownContainer = styled(Box)<{ isOpen: boolean }>`
@@ -36,15 +37,14 @@ const DropDownContainer = styled(Box)<{ isOpen: boolean }>`
   width: 100%;
   position: relative;
   border-radius: 16px;
-  height: 40px;
+  /* height: 40px; */
   min-width: 136px;
   user-select: none;
-  z-index: 20;
   ${(props) =>
     props.isOpen &&
     css`
       ${DropDownHeader} {
-        border-radius: 8px 8px 0 0;
+        border-radius: 8px;
       }
 
       ${DropDownListContainer} {
@@ -68,6 +68,7 @@ const DropDownList = styled.ul`
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-align: left;
 `
 
 const ListItem = styled.li`
@@ -80,6 +81,7 @@ export interface SelectProps extends BoxProps {
   onOptionChange?: (option: OptionProps) => void
   placeHolderText?: string
   defaultOptionIndex?: number
+  valueOfSelect?: any
 }
 
 export interface OptionProps {
@@ -92,6 +94,7 @@ const Select: React.FunctionComponent<SelectProps> = ({
   onOptionChange,
   defaultOptionIndex = 0,
   placeHolderText,
+  valueOfSelect,
   ...props
 }) => {
   const dropdownRef = useRef(null)
@@ -124,12 +127,11 @@ const Select: React.FunctionComponent<SelectProps> = ({
       document.removeEventListener('click', handleClickOutside)
     }
   }, [])
-
   return (
     <DropDownContainer isOpen={isOpen} {...props}>
       <DropDownHeader onClick={toggling}>
-        <Text color={!optionSelected && placeHolderText ? 'text' : undefined}>
-          {!optionSelected && placeHolderText ? placeHolderText : options[selectedOptionIndex].label}
+        <Text small color={!optionSelected && placeHolderText ? colors.text.light : undefined}>
+          {(!optionSelected && placeHolderText || !valueOfSelect) ? placeHolderText : options[selectedOptionIndex].label}
         </Text>
       </DropDownHeader>
       <ArrowDownIcon color="text" onClick={toggling} />
@@ -138,7 +140,7 @@ const Select: React.FunctionComponent<SelectProps> = ({
           {options.map((option, index) =>
             placeHolderText || index !== selectedOptionIndex ? (
               <ListItem onClick={onOptionClicked(index)} key={option.label}>
-                <Text>{option.label}</Text>
+                <Text small>{option.label}</Text>
               </ListItem>
             ) : null,
           )}

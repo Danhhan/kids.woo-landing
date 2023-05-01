@@ -50,4 +50,10 @@ export const ResetCSS = createGlobalStyle`
     background: transparent; 
     border-radius: 10px;
   }
+  /* FORM */
+  .msg.error {
+    font-size: 12px;
+    color: #EB5757;
+    text-align: left;
+  }
 `

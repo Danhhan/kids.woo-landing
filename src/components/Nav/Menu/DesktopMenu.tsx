@@ -1,19 +1,14 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 
-//COMPs
-import { LangSwitcher } from '../LangSwitcher'
-
-import { MenuLink } from 'config/types/menu'
-import { useTranslation } from 'contexts/Localization'
+// COMPs
 import { colors } from 'styles/colors'
 import { media } from 'styles/media'
-import { useMenu } from '../hook'
 import { LINK } from './contants'
 
 const Wrapper = styled.div`
   display: none;
-  ${media.lg`
+  ${media['1045px']`
     display: flex;
     flex: 1;
     align-items: center;
@@ -74,16 +69,16 @@ export const DesktopMenu: React.FC = () => {
         <NavItem onClick={() => onScrollToView(LINK.ABOUT)}>
           <a>Về WOO Group Kids</a>
         </NavItem>
-        <NavItem onClick={() => onScrollToView(LINK.TEAM)}>
+        <NavItem onClick={() => onScrollToView(LINK.FEATURE)}>
           <a>Tại sao chọn WOO Group Kids</a>
         </NavItem>
         <NavItem onClick={() => onScrollToView(LINK.ROAD_MAP)}>
           <a>Lộ trình học</a>
         </NavItem>
-        <NavItem onClick={() => onScrollToView(LINK.ROAD_MAP)}>
+        <NavItem onClick={() => onScrollToView(LINK.TEACHER)}>
           <a>Đội ngũ giáo viên</a>
         </NavItem>
-        <NavItem onClick={() => onScrollToView(LINK.ROAD_MAP)}>
+        <NavItem onClick={() => onScrollToView(LINK.FEEDBACK)}>
           <a>Học viên đã nói gì </a>
         </NavItem>
       </NavList>

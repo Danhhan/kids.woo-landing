@@ -1,17 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useCallback } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 
 import { Box, Flex } from 'components/Box'
-import { NewTabLink } from 'components/Shared'
-import { Socials } from '../Socials'
-import { menuLinks } from './contants'
-import { getActiveMenuItem } from '../utitls'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'contexts/Localization'
-import { useMenu } from '../hook'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -76,29 +69,29 @@ interface Props {
 
 export const MobileMenu: React.FC<Props> = ({ onClose, link }) => {
   const { t } = useTranslation()
-  const { onClickNavItem, menuList, activeMenuItem } = useMenu()
 
-  return (
-    <Wrapper id="mobile-menu">
-      <Flex height="100%" flexDirection="column">
-        <Flex width="100%" alignItems="center" justifyContent="flex-end">
-          <Box style={{ cursor: 'pointer' }} p="12px" onClick={onClose}>
-            {/* <CloseIcon width="24px" height="24px" color={colors.common.black} /> */}
-          </Box>
-        </Flex>
+  // return (
+  //   <Wrapper id="mobile-menu">
+  //     <Flex height="100%" flexDirection="column">
+  //       <Flex width="100%" alignItems="center" justifyContent="flex-end">
+  //         <Box style={{ cursor: 'pointer' }} p="12px" onClick={onClose}>
+  //           {/* <CloseIcon width="24px" height="24px" color={colors.common.black} /> */}
+  //         </Box>
+  //       </Flex>
 
-        <Menu>
-          {menuList?.map((item, index) => (
-            <MenuItem
-              className={activeMenuItem?.href === item.href ? 'active' : ''}
-              key={index}
-              onClick={() => onClickNavItem(item)}
-            >
-              <a>{item.label}</a>
-            </MenuItem>
-          ))}
-        </Menu>
-      </Flex>
-    </Wrapper>
-  )
+  //       <Menu>
+  //         {menuList?.map((item, index) => (
+  //           <MenuItem
+  //             className={activeMenuItem?.href === item.href ? 'active' : ''}
+  //             key={index}
+  //             onClick={() => onClickNavItem(item)}
+  //           >
+  //             <a>{item.label}</a>
+  //           </MenuItem>
+  //         ))}
+  //       </Menu>
+  //     </Flex>
+  //   </Wrapper>
+  // )
+  return null;
 }
