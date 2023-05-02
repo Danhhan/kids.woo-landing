@@ -1,6 +1,6 @@
 import { Container } from 'components/Layout'
 import { RegisterButton } from 'components/RegisterButton'
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { colors } from 'styles/colors'
 import { media } from 'styles/media'
@@ -17,6 +17,11 @@ export const BenifitSection: React.FC = () => {
     'Nâng cao kỹ năng phát âm, Nghe - Nói - Đọc - Viết và kiến thức ngữ pháp',
     'Đáp ứng kiến thức và kỹ năng của các bài thi chuẩn quốc tế',
   ]
+  const onScrollToView = useCallback((id: string) => {
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth',
+    })
+  }, [])
   return (
     <Wrapper>
       <Container>
@@ -35,7 +40,11 @@ export const BenifitSection: React.FC = () => {
               )
             })}
             <div className="hidden md:block">
-              <RegisterButton>
+              <RegisterButton
+                onClick={() => {
+                  onScrollToView('#register-form')
+                }}
+              >
                 <span className="uppercase">Đăng ký ngay cho con</span>
               </RegisterButton>
             </div>

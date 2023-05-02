@@ -11,10 +11,7 @@ const Nav = dynamic(() => import('components/Nav'), { ssr: false })
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 870px;
-  ${media['1200px']`
-    height: 641px;
-  `}
+  padding-bottom: 32px;
   background-color: ${colors.primary.light};
   border-bottom-left-radius: 10%;
   border-bottom-right-radius: 10%;
@@ -23,7 +20,7 @@ const Wrapper = styled.div`
   }
 `
 const HeroContent = styled.div`
-  ${media['1200px']`
+  ${media.xlg`
     max-width: 633px;
     min-height: 265px;
     position: absolute;
@@ -61,17 +58,14 @@ export const HeroSection: React.FC = () => {
             <HeroContent>
               <h1 className="heading">Tiếng Anh trẻ em - WOO Group Kids</h1>
               <p className="sub-heading">Mở khóa các kỹ năng tiếng Anh cùng WOO Group</p>
-              <p className="sub-heading">
-                Mở khóa các kỹ năng tiếng Anh cùng WOO Group From Zero to Fluent: English Conversation Made Easy!
-              </p>
+              <p className="sub-heading">From Zero to Fluent: English Conversation Made Easy!</p>
               <div className="mt-4">
                 <RegisterButton
                   onClick={() => {
                     onScrollToView('#register-form')
                   }}
                 >
-                  {' '}
-                  NHận tư vấn miễn phí
+                  Nhận tư vấn miễn phí
                 </RegisterButton>
               </div>
             </HeroContent>

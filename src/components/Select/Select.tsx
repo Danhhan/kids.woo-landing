@@ -1,5 +1,6 @@
 import { Box, BoxProps } from 'components/Box'
 import { Text } from 'components/Text'
+import useOnClickOutside from 'hooks/useOnClickOutside'
 import { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { colors } from 'styles/colors'
@@ -52,7 +53,8 @@ const DropDownContainer = styled(Box)<{ isOpen: boolean }>`
         transform: scaleY(1);
         opacity: 1;
         border-top-width: 0;
-        border-radius: 0 0 8px 8px;
+        border-radius: 8px;
+        margin-top: 2px;
       }
     `}
 
@@ -117,21 +119,15 @@ const Select: React.FunctionComponent<SelectProps> = ({
     }
   }
 
-  useEffect(() => {
-    const handleClickOutside = () => {
-      setIsOpen(false)
-    }
-
-    document.addEventListener('click', handleClickOutside)
-    return () => {
-      document.removeEventListener('click', handleClickOutside)
-    }
-  }, [])
+  const ref = useRef<HTMLDivElement>(null)
+  useOnClickOutside(ref, () => setIsOpen(false))
   return (
-    <DropDownContainer isOpen={isOpen} {...props}>
+    <DropDownContainer ref={ref} isOpen={isOpen} {...props}>
       <DropDownHeader onClick={toggling}>
         <Text small color={!optionSelected && placeHolderText ? colors.text.light : undefined}>
-          {(!optionSelected && placeHolderText || !valueOfSelect) ? placeHolderText : options[selectedOptionIndex].label}
+          {(!optionSelected && placeHolderText) || !valueOfSelect
+            ? placeHolderText
+            : options[selectedOptionIndex].label}
         </Text>
       </DropDownHeader>
       <ArrowDownIcon color="text" onClick={toggling} />

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useToggleMobileMenu } from 'hooks/useToggleMobileMenu'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
 
@@ -13,9 +13,7 @@ import { MobileMenu } from './Menu/MobileMenu'
 import { Logo } from './Logo'
 import { LangSwitcher } from './LangSwitcher'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 export const StyledNav = styled.nav`
   display: flex;
   align-items: center;
@@ -27,13 +25,12 @@ export const StyledNav = styled.nav`
     top: 0px;
     left: 0px;
     right: 0px;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    background-color: ${colors.primary.light};
     box-shadow: 0 1px 2px 0 hsl(0deg 0% 80% / 24%);
     z-index: 10;
     padding: 0 16px;
     ${media.lg`
-      padding: 0 40px;
+      padding: 0 80px;
     `};
   }
 `
@@ -104,6 +101,11 @@ const Nav: React.FC<{ link? }> = ({ link }) => {
       navbarContainer.style.paddingTop = '0px'
     }
   }
+  const onScrollToView = useCallback((id: string) => {
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth',
+    })
+  }, [])
 
   return (
     <Wrapper id="navbar-wrapper">
@@ -117,17 +119,13 @@ const Nav: React.FC<{ link? }> = ({ link }) => {
             <DesktopMenu />
           </div>
           <div>
-            <div className="items-center gap-4 xlg:flex">
-              <RegisterButton className='hidden xlg:block'>
-                <span>Đăng ký tư vấn</span>
-              </RegisterButton>
-              <div className="flex gap-4">
-                <LangSwitcher />
-              </div>
-            </div>
-            <ToggleMenuWrapper onClick={toggleNavMobile}>
-              {/* <ToggleMenuIcon width="24px" height="24px" color={colors.text.main} /> */}
-            </ToggleMenuWrapper>
+            <RegisterButton
+              onClick={() => {
+                onScrollToView('#register-form')
+              }}
+            >
+              <span>Đăng ký tư vấn</span>
+            </RegisterButton>
           </div>
         </StyledNav>
         <MobileMenu onClose={toggleNavMobile} link={link} />

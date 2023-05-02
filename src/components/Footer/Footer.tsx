@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
                 </span>
                 <div>
                   <SubTitle>Email</SubTitle>
-                  <p>helloenglishxinchao@gmail.com</p>
+                  <p>hotro.woogroup@gmail.com</p>
                 </div>
               </li>
             </ul>
@@ -158,7 +158,7 @@ const Footer: React.FC = () => {
       </StyledContainer>
       <div className="md:text-center w-full mt-6">
         <Container>
-          <h5 className="f14Regular text-primary">© 2023 WOO. All rights reserved</h5>
+          <h5 className="f14Regular text-primary">© 2023 Woo Group. All rights reserved</h5>
         </Container>
       </div>
     </StyledFooter>

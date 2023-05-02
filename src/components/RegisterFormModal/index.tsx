@@ -16,11 +16,12 @@ import { INTEREST_COURSE } from 'config/constants/contact'
 import { RegisterSuccessModal } from 'components/RegisterSuccessModal'
 import ErrorForm from 'components/ErrorForm'
 import LoadingBtn from 'components/Button/LoadingBtn'
+import { PHONE_REGEX } from 'config/constants/form/validation'
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  background: linear-gradient(289.54deg, rgba(255, 207, 39, 0.72) 1.48%, #ffbf00 99.1%);
+  background: linear-gradient(289.54deg, rgba(255, 207, 39, 1) 1.48%, #ffbf00 99.1%);
   overflow: hidden;
   ${media.lg`
     width: 816px;
@@ -91,10 +92,10 @@ const StyledForm = styled.form`
   }
 `
 
-const MAX_SEC = 30
+const MAX_SEC = 60
 
 export const RegisterFormModal: React.FC = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModal, setIsOpenModal] = useState(true)
   const [timeLeft, setTimeLeft] = useState(MAX_SEC)
   const [isOpenSuccessModal, setIsOpenSuccessModal] = useState(false)
 
@@ -191,10 +192,14 @@ export const RegisterFormModal: React.FC = () => {
                     )}
                   </div>
                   <div className="flex-1">
-                    <input {...register('parent_phone', { required: true })} placeholder="Số điện thoại" />
+                    <input
+                      {...register('parent_phone', { pattern: PHONE_REGEX, required: true })}
+                      placeholder="Số điện thoại"
+                    />
                     {errors.parent_phone && (
                       <div className="error msg" role="alert">
-                        Vui lòng nhập thông tin của trường này!
+                        {errors.parent_phone?.type === 'required' && `Vui lòng nhập thông tin của trường này!`}
+                        {errors.parent_phone?.type === 'pattern' && `Số điện thoại không hợp lệ!`}
                       </div>
                     )}
                   </div>
@@ -236,7 +241,7 @@ export const RegisterFormModal: React.FC = () => {
                 </div>
                 {errorForm && <ErrorForm error={errorForm?.error} />}
                 <button type="submit">
-                  {!isLoading && <span>Gửi thông tin ngay</span>}
+                  {!isLoading && <span className="uppercase">Gửi thông tin ngay</span>}
                   {isLoading && <LoadingBtn />}
                 </button>
               </StyledForm>

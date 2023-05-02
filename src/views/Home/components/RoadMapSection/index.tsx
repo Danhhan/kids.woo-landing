@@ -242,8 +242,10 @@ export const RoadMapSection: React.FC = () => {
                     return (
                       <div className="item">
                         <p className="f18Bold uppercase">{name}</p>
-                        <p className="f14Regular">{studyingHour}</p>
-                        <p className="f14Regular">giờ</p>
+                        <div className='flex flex-col md:flex-row gap-1'>
+                          <p className="f14Regular">{studyingHour}</p>
+                          <p className="f14Regular">giờ</p>
+                        </div>
                       </div>
                     )
                   })}

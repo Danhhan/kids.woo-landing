@@ -15,6 +15,7 @@ import { INTEREST_COURSE } from 'config/constants/contact'
 import ErrorForm from 'components/ErrorForm'
 import { RegisterSuccessModal } from 'components/RegisterSuccessModal'
 import LoadingBtn from 'components/Button/LoadingBtn'
+import { PHONE_REGEX } from 'config/constants/form/validation'
 
 const Wrapper = styled.div`
   background-color: #fff1d7;
@@ -24,10 +25,14 @@ const Wrapper = styled.div`
   `}
   position: relative;
   .plane-img {
+    display: none;
     position: absolute;
     width: 285.14px;
     bottom: 31px;
     left: 230px;
+    ${media.xl`
+      display: block;
+    `}
   }
 `
 const StyledForm = styled.form`
@@ -126,7 +131,6 @@ export const RegisterFormSection: React.FC = () => {
   const onSubmit: SubmitHandler<IContactInput> = (data) => {
     createContact(data)
   }
-  console.log(getValues('interest_course'))
   return (
     <Wrapper id="register-form">
       <div className="plane-img">
@@ -153,10 +157,14 @@ export const RegisterFormSection: React.FC = () => {
               <input {...register('student_name', { required: true })} placeholder="Họ và tên học sinh" />
             </div>
             <div className="flex-1">
-              <input {...register('parent_phone', { required: true })} placeholder="Số điện thoại của phụ huynh" />
+              <input
+                {...register('parent_phone', { pattern: PHONE_REGEX, required: true })}
+                placeholder="Số điện thoại của phụ huynh"
+              />
               {errors.parent_phone && (
                 <div className="error msg" role="alert">
-                  Vui lòng nhập thông tin của trường này!
+                  {errors.parent_phone?.type === 'required' && `Vui lòng nhập thông tin của trường này!`}
+                  {errors.parent_phone?.type === 'pattern' && `Số điện thoại không hợp lệ!`}
                 </div>
               )}
             </div>
@@ -182,7 +190,7 @@ export const RegisterFormSection: React.FC = () => {
           </div>
           {errorForm && <ErrorForm error={errorForm?.error} />}
           <button type="submit">
-            {!isLoading && <span>Gửi thông tin ngay</span>}
+            {!isLoading && <span className="uppercase">Gửi thông tin ngay</span>}
             {isLoading && <LoadingBtn />}
           </button>
           <p className="f12Regular mt-4 italic">Chuyên viên tư vấn sẽ liên hệ và hỗ trợ ngay</p>

@@ -1,12 +1,11 @@
 import { Container } from 'components/Layout'
-import Slider from 'react-slick'
-import React from 'react'
-import styled from 'styled-components'
-import { sizes, media } from 'styles/media'
-import Link from 'next/link'
 import { CalendarIcon, StarIcon } from 'components/Svg'
+import Link from 'next/link'
+import React from 'react'
+import Slider from 'react-slick'
+import styled from 'styled-components'
 import { colors } from 'styles/colors'
-import { LINK } from 'components/Nav/Menu/contants'
+import { sizes } from 'styles/media'
 import { HeadingOfSection } from '../HeadingOfSection'
 
 const Wrapper = styled.div``
@@ -105,59 +104,35 @@ export const TeacherSection: React.FC = () => {
   }
   const teacherList = [
     {
+      avatar: '/images/teacher-image-1.jpg',
       name: 'Lea Morgan',
       experience: '10 năm',
       accent: 'Chuẩn bản ngữ',
       desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
       price: '632.231đ',
-      nationalCode: 'us',
+      nationalCode: 'gb',
       rating: '4.8'
     },
     {
-      name: 'Lea Morgan',
-      experience: '10 năm',
+      avatar: '/images/teacher-image-2.jpg',
+      name: 'Natasa Balaz',
+      experience: '6 năm',
       accent: 'Chuẩn bản ngữ',
       desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
       price: '632.231đ',
-      nationalCode: 'us',
+      nationalCode: 'ca',
       rating: '4.8'
     },
     {
-      name: 'Lea Morgan',
+      avatar: '/images/teacher-image-3.jpg',
+      name: 'David',
       experience: '10 năm',
       accent: 'Chuẩn bản ngữ',
       desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
       price: '632.231đ',
-      nationalCode: 'us',
+      nationalCode: 'tr',
       rating: '4.8'
-    },
-    {
-      name: 'Lea Morgan',
-      experience: '10 năm',
-      accent: 'Chuẩn bản ngữ',
-      desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
-      price: '632.231đ',
-      nationalCode: 'us',
-      rating: '4.8'
-    },
-    {
-      name: 'Lea Morgan',
-      experience: '10 năm',
-      accent: 'Chuẩn bản ngữ',
-      desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
-      price: '632.231đ',
-      nationalCode: 'us',
-      rating: '4.8'
-    },
-    {
-      name: 'Lea Morgan',
-      experience: '10 năm',
-      accent: 'Chuẩn bản ngữ',
-      desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
-      price: '632.231đ',
-      nationalCode: 'us',
-      rating: '4.8'
-    },
+    }
   ]
   return (
     <Wrapper id="teacher">
@@ -172,11 +147,11 @@ export const TeacherSection: React.FC = () => {
       <div className="overflow-hidden">
         <StyledSlider {...settings}>
           {teacherList.map((item) => {
-            const { name, accent, desc, experience, nationalCode, price, rating } = item
+            const { name, accent, desc, experience, nationalCode, price, rating, avatar } = item
             return (
               <TeacherCard>
                 <div className="teacher-avatar">
-                  <img src="/images/teacher-image-1.jpeg" />
+                  <img src={avatar} />
                 </div>
                 <div className="flex flex-col gap-2 content-top">
                   <div className="flex justify-between">
