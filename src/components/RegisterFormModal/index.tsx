@@ -107,7 +107,7 @@ const StyledForm = styled.form`
 const MAX_SEC = 20
 
 export const RegisterFormModal: React.FC = () => {
-  const [isOpenModal, setIsOpenModal] = useState(true)
+  const [isOpenModal, setIsOpenModal] = useState(false)
   const [timeLeft, setTimeLeft] = useState(MAX_SEC)
   const [isOpenSuccessModal, setIsOpenSuccessModal] = useState(false)
 
