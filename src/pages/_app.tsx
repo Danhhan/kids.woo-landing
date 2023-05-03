@@ -18,6 +18,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query
 import { Footer } from 'components/Footer'
 import { useRouter } from 'next/router'
 import getConfig from 'next/config'
+import FacebookPixel from '../FacebookPixel'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,19 +55,6 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   // Use the layout defined at the page level, if available
   const Layout = Component.Layout || Fragment
   const isMounted = useIsMounted()
-  const router = useRouter()
-  useEffect(() => {
-    import('react-facebook-pixel')
-      .then((x) => x.default)
-      .then((ReactPixel) => {
-        ReactPixel.init(FB_PIXEL_ID)
-        ReactPixel.pageView()
-
-        router.events.on('routeChangeComplete', () => {
-          ReactPixel.pageView()
-        })
-      })
-  }, [router.events])
   return (
     <>
       {isMounted && (
@@ -109,6 +97,7 @@ const MyApp: React.FC<AppProps> = (props) => {
           href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
           rel="stylesheet"
         />
+        <FacebookPixel />
       </Head>
 
       <ThemeProvider theme={theme}>

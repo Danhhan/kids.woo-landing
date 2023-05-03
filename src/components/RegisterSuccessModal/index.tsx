@@ -35,8 +35,8 @@ export const RegisterSuccessModal: React.FC<Props> = ({ isOpenModal, onClose }) 
               <img src="/images/bg-success-modal.png" />
             </div>
             <div className="p-6">
-              <h4 className="f18Regular">Chúc mừng bạn đã gửi thông tin thành công</h4>
-              <p className="text-text-light mt-4">Đội ngũ tư vấn của WOO Group sẽ liên hệ với bạn ngay</p>
+              <h4 className="f18Regular w-[90%]">Chúc mừng bạn đã gửi thông tin thành công</h4>
+              <p className="text-text-light mt-4">Đội ngũ tư vấn của WOO Group sẽ liên hệ với bạn ngay.</p>
               <div className="text-center mt-6">
                 <StyledButton onClick={onClose}>Đóng</StyledButton>
               </div>
