@@ -30,8 +30,11 @@ export const StyledNav = styled.nav`
     z-index: 10;
     padding: 0 16px;
     ${media.lg`
+      padding: 0 40px;
+    `}
+    ${media.xl`
       padding: 0 80px;
-    `};
+    `}
   }
 `
 const ToggleMenuWrapper = styled.div`
@@ -56,7 +59,6 @@ const RegisterButton = styled.button`
   border-radius: 8px;
   font-weight: 590;
   font-size: 14px;
-  line-height: 17px;
 `
 const LogoWraper = styled.a`
   width: 127px;

@@ -13,7 +13,6 @@ const Wrapper = styled.div`
     p {
       font-weight: 400;
       font-size: 16px;
-      line-height: 23px;
       color: ${colors.text.light};
     }
   }
@@ -34,12 +33,12 @@ const Wrapper = styled.div`
     `}
   }
 `
-
 const PreviewVideoWrap = styled.div`
   background-color: ${colors.primary.light2};
   width: calc(100% - 12px);
-  ${media.xlg`
-    width: 100%;
+  ${media.md`
+    width: 768px;
+    margin: 0 auto;
   `}
   box-shadow: 12px 12px 0px ${colors.common.black2};
   border-radius: 22px;
@@ -60,9 +59,6 @@ const PreviewVideoWrap = styled.div`
     border-radius: 18px;
     overflow: hidden;
     position: relative;
-    ${media['1200px']`
-      height: 328px;
-    `}
   }
   .play-video-button {
     width: 101px;

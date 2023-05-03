@@ -31,15 +31,23 @@ const HeroContent = styled.div`
   flex-direction: column;
   .heading {
     font-weight: 800;
-    font-size: 35px;
-    line-height: 53px;
+    font-size: 20px;
+    /* font-size: 35px; */
   }
   .sub-heading {
     font-weight: 400;
-    font-size: 24px;
-    line-height: 36px;
+    /* font-size: 24px; */
+    font-size: 16px;
     color: ${colors.primary.dark};
   }
+  ${media.lg`
+    .heading {
+      font-size: 35px;
+    }
+    .sub-heading {
+      font-size: 24px;
+    }
+  `}
 `
 const HeroImgWrap = styled.div``
 

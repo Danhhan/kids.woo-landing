@@ -18,6 +18,7 @@ const FeedbackCard = styled.div`
   .content {
     padding: 19px 24px 32px 24px;
   }
+  height: 100%;
 `
 const StyledSlider = styled(Slider)`
   margin-top: 16px;
@@ -35,6 +36,14 @@ const StyledSlider = styled(Slider)`
         }
       }
     }
+  }
+  .slick-track {
+    display: flex !important;
+  }
+
+  .slick-slide {
+    display: flex !important;
+    height: auto;
   }
   .slick-slide {
     margin-bottom: 42px;
@@ -82,13 +91,14 @@ export const FeedbackSection: React.FC = () => {
     },
     {
       image: '/images/feedback-img-2.jpeg',
-      userName: 'Phụ Huynh T.M.Hằng',
-      content: 'Học với WOO Group bé nhà mình chủ động nói tiếng Anh nhiều hơn và rất mong chờ đến buổi các buổi học',
+      userName: 'Phụ huynh T.V.Toàn',
+      content:
+        'Học tiếng Anh với Giáo viên nước ngoài có thể giúp con phát âm chuẩn hơn, rèn luyện phong thái nói tự nhiên hơn nữa. Học phí của WOO Group rất thấp nhưng chất lượng rất tốt',
     },
     {
       image: '/images/feedback-img-3.jpeg',
-      userName: 'Phụ Huynh T.M.Hằng',
-      content: 'Học với WOO Group bé nhà mình chủ động nói tiếng Anh nhiều hơn và rất mong chờ đến buổi các buổi học',
+      userName: 'Học sinh H.Q.Việt',
+      content: 'Con thích học với các Giáo viên tại WOO Grpup lắm. Các Thầy Cô rất vui vẻ, nhiệt tình và dạy rất vui',
     },
   ]
   return (
@@ -108,8 +118,8 @@ export const FeedbackSection: React.FC = () => {
                   <img src={image} />
                 </div>
                 <div className="content">
-                  <p className='text-text-light'>{`"${content}" - `}</p>
-                  <p className='f16Bold text-text-main'>{userName}</p>
+                  <span className="text-text-light">{`"${content}" - `}</span>
+                  <span className="f16Bold text-text-main">{userName}</span>
                 </div>
               </FeedbackCard>
             )

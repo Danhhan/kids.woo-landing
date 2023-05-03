@@ -8,7 +8,7 @@ import { CloseIcon } from 'components/Svg'
 import { Modal } from 'components/Modal'
 import { isAxiosError } from 'utils/helpers'
 import { IErrorForm } from 'types/IErrorForm'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { IContactInput } from 'types/IContact'
 import { useMutation } from '@tanstack/react-query'
 import { createContactFn } from 'apis/contact.api'
@@ -23,18 +23,30 @@ const Wrapper = styled.div`
   height: 100%;
   background: linear-gradient(289.54deg, rgba(255, 207, 39, 1) 1.48%, #ffbf00 99.1%);
   overflow: hidden;
-  ${media.lg`
+  ${media.md`
     width: 816px;
     border: 1px solid #222222;
     box-shadow: 12px 12px 0px #222222;
     border-radius: 16px;
-    height: auto;
+    height: 524px;
   `}
   z-index: 20;
+  position: relative;
 `
 const ModalContent = styled.div`
-  padding: 32px;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 488px;
+  ${media.md`
+    padding: 32px;
+    width: auto;
+    position: unset;
+    top: unset;
+    left: unset;
+    transform: unset;
+  `}
 `
 const CloseButton = styled(Button)`
   background: #fa6466;
@@ -92,7 +104,7 @@ const StyledForm = styled.form`
   }
 `
 
-const MAX_SEC = 60
+const MAX_SEC = 20
 
 export const RegisterFormModal: React.FC = () => {
   const [isOpenModal, setIsOpenModal] = useState(true)
@@ -101,7 +113,7 @@ export const RegisterFormModal: React.FC = () => {
 
   const onClose = () => {
     setIsOpenModal(false)
-    setTimeLeft(MAX_SEC)
+    setTimeLeft(undefined)
   }
   useEffect(() => {
     if (timeLeft === 0) {
@@ -147,6 +159,7 @@ export const RegisterFormModal: React.FC = () => {
     setValue,
     formState: { errors },
     handleSubmit,
+    control,
   } = useForm<IContactInput>({
     defaultValues: {
       interest_course: null,
@@ -169,18 +182,18 @@ export const RegisterFormModal: React.FC = () => {
     <>
       <Modal isOpen={isOpenModal}>
         <Wrapper>
+          <CloseButton onClick={onClose}>
+            <CloseIcon />
+          </CloseButton>
+          <img className="absolute top-0 right-0" src="images/top-right-bg.png" />
+          <img
+            className="w-[240px] absolute bottom-0 left-0 hidden md:block"
+            src="images/boy-with-books-showing-ok.png"
+          />
           <ModalContent>
-            <CloseButton onClick={onClose}>
-              <CloseIcon />
-            </CloseButton>
-            <img className="absolute top-0 right-0" src="images/top-right-bg.png" />
-            <img
-              className="w-[240px] absolute bottom-0 left-0 hidden lg:block"
-              src="images/boy-with-books-showing-ok.png"
-            />
             <div className="relative z-[1] mb-4">
-              <h2 className="f24Bold uppercase text-blue1 text-center">Cho con học tiếng Anh chỉ từ</h2>
-              <p className="font-extrabold text-red uppercase text-4xl text-center">120.000đ/giờ</p>
+              <h2 className="f22Bold md:f24Bold uppercase text-blue1 text-center">Cho con học tiếng Anh chỉ từ</h2>
+              <p className="font-extrabold text-red uppercase text-[33px] md:text-4xl text-center">99.000đ/giờ</p>
               <StyledForm onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col gap-[10px] content">
                   <div className="flex-1">
@@ -204,38 +217,52 @@ export const RegisterFormModal: React.FC = () => {
                     )}
                   </div>
                   <div className="flex-1">
-                    <Select
-                      placeHolderText="Bé cần được cải thiện kỹ năng nào?"
-                      options={INTEREST_COURSE}
-                      onOptionChange={(option) => {
-                        setValue('interest_course', option.value)
-                      }}
+                    <Controller
+                      name="interest_course"
+                      control={control}
+                      render={({ field: { onChange, value } }) => (
+                        <Select
+                          placeHolderText="Bé cần được cải thiện kỹ năng nào?"
+                          options={INTEREST_COURSE}
+                          onOptionChange={(option) => {
+                            onChange(option.value)
+                          }}
+                          valueOfSelect={value}
+                        />
+                      )}
                     />
                   </div>
                   <div className="flex-1">
-                    <Select
-                      placeHolderText="Khóa học tiếng Anh bé quan tâm"
-                      options={[
-                        {
-                          label: 'Giao tiếp',
-                          value: 'communication',
-                        },
-                        {
-                          label: 'CEFR',
-                          value: 'CEFR',
-                        },
-                        {
-                          label: 'Cambridge',
-                          value: 'Cambridge',
-                        },
-                        {
-                          label: 'IELTS',
-                          value: 'IELTS',
-                        },
-                      ]}
-                      onOptionChange={(option) => {
-                        setValue('skill_improvement', option.value)
-                      }}
+                    <Controller
+                      name="skill_improvement"
+                      control={control}
+                      render={({ field: { onChange, value } }) => (
+                        <Select
+                          placeHolderText="Khóa học tiếng Anh bé quan tâm"
+                          options={[
+                            {
+                              label: 'Giao tiếp',
+                              value: 'communication',
+                            },
+                            {
+                              label: 'CEFR',
+                              value: 'CEFR',
+                            },
+                            {
+                              label: 'Cambridge',
+                              value: 'Cambridge',
+                            },
+                            {
+                              label: 'IELTS',
+                              value: 'IELTS',
+                            },
+                          ]}
+                          onOptionChange={(option) => {
+                            onChange(option.value)
+                          }}
+                          valueOfSelect={value}
+                        />
+                      )}
                     />
                   </div>
                 </div>

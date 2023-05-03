@@ -33,7 +33,7 @@ export const BenifitSection: React.FC = () => {
             <h2 className="f24Bold text-orange mb-8">Đồng hành cùng WOO Group Kids, các con sẽ:</h2>
             {itemList.map((item) => {
               return (
-                <div className="flex gap-2 items-center mb-8">
+                <div className="flex gap-2 items-center mb-4">
                   <img src="/images/multiple-star.png" />
                   <span>{item}</span>
                 </div>

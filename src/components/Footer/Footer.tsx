@@ -32,7 +32,6 @@ const StyledContainer = styled(Container)`
 const SubTitle = styled.p`
   font-weight: 600;
   font-size: 16px;
-  line-height: 24px;
   color: ${colors.common.white};
   position: relative;
   padding-bottom: 4px;

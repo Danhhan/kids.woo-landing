@@ -28,7 +28,6 @@ const Item = styled.div`
     margin-bottom: 4px;
   }
   .hour {
-    line-height: 20px;
     font-weight: 500;
   }
   ${media.lg`

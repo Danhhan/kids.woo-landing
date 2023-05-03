@@ -32,12 +32,14 @@ const NavItem = styled.li`
   min-width: 100px;
   a {
     font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 12px;
     transition: all 0.4s ease;
     color: ${colors.text.light};
     padding-top: 4px;
     padding-bottom: 4px;
+    ${media.xlg`
+      font-size: 14px;
+    `}
     &:hover {
       color: ${colors.text.main};
       border-bottom: 2px solid ${colors.text.main};

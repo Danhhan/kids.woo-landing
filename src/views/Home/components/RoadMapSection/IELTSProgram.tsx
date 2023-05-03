@@ -30,7 +30,6 @@ const Item = styled.div<{bg}>`
     margin-bottom: 10px;
   }
   .hour {
-    line-height: 20px;
     font-weight: 500;
   }
   ${media.lg`

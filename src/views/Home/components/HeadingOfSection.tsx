@@ -8,10 +8,8 @@ const Wrapper = styled.div`
     color: ${colors.text.main};
     font-weight: 700;
     font-size: 20px;
-    line-height: 29px;
     ${media.md`
       font-size: 32px;
-      line-height: 47px;
     `}
   }
   .img-wrap {

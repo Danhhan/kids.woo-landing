@@ -50,7 +50,6 @@ const LevelItem1 = styled.div`
     border-radius: 750px;
     font-weight: 800;
     font-size: 16px;
-    line-height: 23px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,7 +64,6 @@ const LevelItem1 = styled.div`
     color: #5158fa;
     font-weight: 500;
     font-size: 18px;
-    line-height: 26px;
   }
 `
 

@@ -43,7 +43,6 @@ const MenuItem = styled.li`
   a {
     font-weight: 600;
     font-size: 32px;
-    line-height: 44px;
   }
 `
 
