@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Container } from 'components/Layout'
 import { CircleCloseIcon, MinusIcon, PlusIcon } from 'components/Svg'
@@ -59,6 +59,13 @@ const PreviewVideoWrap = styled.div`
     border-radius: 18px;
     overflow: hidden;
     position: relative;
+    iframe {
+      min-height: 291px;
+      width: 100%;
+      ${media.md`
+        height: 410px;
+      `}
+    }
   }
   .play-video-button {
     width: 101px;
@@ -71,11 +78,19 @@ const PreviewVideoWrap = styled.div`
 `
 
 export const AboutUsSection: React.FC = () => {
+  const [videoSrc, setVideoSrc] = useState('')
   return (
     <Wrapper id="about">
       <Container className="relative">
         <div className="flex gap-10">
           <div className="flex-1 content">
+            <button
+              onClick={() => {
+                console.log('okok')
+              }}
+            >
+              OKOKOKOKOK
+            </button>
             <HeadingOfSection>Về WOO Group Kids</HeadingOfSection>
             <p className="mt-6">
               Chương trình dành cho trẻ em của WOO Group hướng đến mục tiêu giúp các bạn nhỏ bắt đầu hành trình làm quen
@@ -93,10 +108,16 @@ export const AboutUsSection: React.FC = () => {
                   </div>
                 </div>
                 <div className="preview-video-bottom">
-                  <img src="/images/banner-preview-video.jpg" />
+                  {/* <img src="/images/banner-preview-video.jpg" />
                   <button className="play-video-button">
                     <img src="/images/play-video-icon.png" />
-                  </button>
+                  </button> */}
+                  <iframe
+                    src="//www.youtube.com/embed/2RG_yqtU4vA?autoplay=1&mute=1"
+                    name="youtube embed"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </PreviewVideoWrap>
               {/* <div className="missile-img">
@@ -123,15 +144,15 @@ export const AboutUsSection: React.FC = () => {
                 </div>
               </div>
               <div className="preview-video-bottom">
-                <img src="/images/banner-preview-video.jpg" />
-                <button className="play-video-button">
-                  <img src="/images/play-video-icon.png" />
-                </button>
+                <iframe
+                  className="desktop"
+                  src="//www.youtube.com/embed/2RG_yqtU4vA"
+                  name="youtube embed"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                ></iframe>
               </div>
             </PreviewVideoWrap>
-            {/* <div className="missile-img">
-              <img src="/images/missile.png" />
-            </div> */}
           </div>
         </div>
       </Container>

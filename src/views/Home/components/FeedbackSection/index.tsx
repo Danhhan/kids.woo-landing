@@ -98,7 +98,7 @@ export const FeedbackSection: React.FC = () => {
     {
       image: '/images/feedback-img-3.jpeg',
       userName: 'Học sinh H.Q.Việt',
-      content: 'Con thích học với các Giáo viên tại WOO Grpup lắm. Các Thầy Cô rất vui vẻ, nhiệt tình và dạy rất vui',
+      content: 'Con thích học với các Giáo viên tại WOO Group lắm. Các Thầy Cô rất vui vẻ, nhiệt tình và dạy rất vui',
     },
   ]
   return (

@@ -108,31 +108,34 @@ export const TeacherSection: React.FC = () => {
       name: 'Lea Morgan',
       experience: '10 năm',
       accent: 'Chuẩn bản ngữ',
-      desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
-      price: '632.231đ',
+      desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng ...',
+      price: ' 1.440.000đ',
       nationalCode: 'gb',
-      rating: '4.8'
+      rating: '5.0',
+      curentSlot: '3',
     },
     {
       avatar: '/images/teacher-image-2.jpg',
       name: 'Natasa Balaz',
       experience: '6 năm',
       accent: 'Chuẩn bản ngữ',
-      desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
-      price: '632.231đ',
+      desc: 'Tôi luôn cố gắng tìm cách tạo ra một môi trường học tập thoải mái, thân thiện và hấp dẫn để các ...',
+      price: '1.080.000đ',
       nationalCode: 'ca',
-      rating: '4.8'
+      rating: '4.9',
+      curentSlot: '6',
     },
     {
       avatar: '/images/teacher-image-3.jpg',
       name: 'David',
       experience: '10 năm',
       accent: 'Chuẩn bản ngữ',
-      desc: 'Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng Tôi là giáo viên tiếng Anh có kinh nghiệm lâu năm trong lĩnh vực giảng',
-      price: '632.231đ',
+      desc: 'Đối với tôi, học viên sẽ không chỉ được học tiếng Anh mà còn được khuyến khích phát triển ...',
+      price: '720.000đ',
       nationalCode: 'tr',
-      rating: '4.8'
-    }
+      rating: '4.8',
+      curentSlot: '9',
+    },
   ]
   return (
     <Wrapper id="teacher">
@@ -147,7 +150,7 @@ export const TeacherSection: React.FC = () => {
       <div className="overflow-hidden">
         <StyledSlider {...settings}>
           {teacherList.map((item) => {
-            const { name, accent, desc, experience, nationalCode, price, rating, avatar } = item
+            const { name, accent, desc, experience, nationalCode, price, rating, avatar, curentSlot } = item
             return (
               <TeacherCard>
                 <div className="teacher-avatar">
@@ -176,7 +179,7 @@ export const TeacherSection: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-1">
                     <CalendarIcon />
-                    <span className="f18Regular text-green">Còn trống 3 lớp</span>
+                    <span className="f18Regular text-green">Còn trống {curentSlot} lớp</span>
                   </div>
                   <p className="desc">{desc}</p>
                 </div>
