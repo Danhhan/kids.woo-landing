@@ -84,13 +84,6 @@ export const AboutUsSection: React.FC = () => {
       <Container className="relative">
         <div className="flex gap-10">
           <div className="flex-1 content">
-            <button
-              onClick={() => {
-                console.log('okok')
-              }}
-            >
-              OKOKOKOKOK
-            </button>
             <HeadingOfSection>Về WOO Group Kids</HeadingOfSection>
             <p className="mt-6">
               Chương trình dành cho trẻ em của WOO Group hướng đến mục tiêu giúp các bạn nhỏ bắt đầu hành trình làm quen
