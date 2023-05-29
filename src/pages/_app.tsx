@@ -82,13 +82,14 @@ const MyApp: React.FC<AppProps> = (props) => {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
         />
-        <meta name="description" content="Hello english web" />
-        <meta name="theme-color" content="#1FC7D4" />
-        <meta name="twitter:image" content="" />
-        <meta name="twitter:description" content="Hello english web" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Hello english" />
-        <title>WOO | học tiếng anh 1 kèm 1</title>
+        <meta property="og:title" content="WOO GROUP | Học tiếng anh 1 kèm 1" />
+        <meta name="description" content="WOO Group tồn tại và phát triển với hệ giá trị cốt lõi: Tử Tế - Tận Tâm - Trách nhiệm." />
+        <meta property="og:description" content="WOO Group tồn tại và phát triển với hệ giá trị cốt lõi: Tử Tế - Tận Tâm - Trách nhiệm." />
+        <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1oOf-WbMChFxFstsL5QIihRHx1DC9gr-z" />
+        <meta property="og:url" content="https://kids.woogroup.vn/" />
+        <link rel="canonical" href="https://kids.woogroup.vn/" />
+        <meta name="keywords" content="Học tiếng Anh online, Tiếng Anh cho người đi làm, tiếng anh chuyên ngành, Tiếng anh cho trẻ em, Học tiếng anh 1 kèm 1, Học tiếng anh 1 kèm 1 cho bé, Học tiếng anh 1 kèm 1 cho trẻ, Học tiếng anh 1-1, học tiếng anh trực tuyến với người nước ngoài, học tiếng anh trực tuyến với người bản xứ" data-rh="true" />
+
 
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
