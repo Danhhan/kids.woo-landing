@@ -11,7 +11,7 @@ import { createContactFn } from 'apis/contact.api'
 import { IContactInput } from 'types/IContact'
 import { IErrorForm } from 'types/IErrorForm'
 import { isAxiosError } from 'utils/helpers'
-import { INTEREST_COURSE } from 'config/constants/contact'
+import { CONTACT_TYPE_KID, INTEREST_COURSE, UTM_ID_DEFAULT } from 'config/constants/contact'
 import ErrorForm from 'components/ErrorForm'
 import { RegisterSuccessModal } from 'components/RegisterSuccessModal'
 import LoadingBtn from 'components/Button/LoadingBtn'
@@ -90,20 +90,7 @@ export const RegisterFormSection: React.FC = () => {
     reset,
     getValues,
     control,
-  } = useForm<IContactInput>({
-    defaultValues: {
-      interest_course: null,
-      parent_email: null,
-      parent_name: null,
-      parent_phone: null,
-      skill_improvement: null,
-      student_age: null,
-      student_name: null,
-      utm_campaign: null,
-      utm_medium: null,
-      utm_source: null,
-    },
-  })
+  } = useForm<IContactInput>()
   // API create contact Mutation
   const {
     mutate: createContact,
@@ -129,7 +116,7 @@ export const RegisterFormSection: React.FC = () => {
     return undefined
   }, [error])
   const onSubmit: SubmitHandler<IContactInput> = (data) => {
-    createContact(data)
+    createContact({ ...data, utm_id: UTM_ID_DEFAULT, type: CONTACT_TYPE_KID })
   }
   return (
     <Wrapper id="register-form">
@@ -146,30 +133,30 @@ export const RegisterFormSection: React.FC = () => {
           </div>
           <div className="flex flex-col gap-[10px] content mb-4">
             <div className="flex-1">
-              <input {...register('parent_name', { required: true })} placeholder="Họ và tên phụ huynh" />
-              {errors.parent_name && (
+              <input {...register('represent_name', { required: true })} placeholder="Họ và tên phụ huynh" />
+              {errors.represent_name && (
                 <div className="error msg" role="alert">
                   Vui lòng nhập thông tin của trường này!
                 </div>
               )}
             </div>
             <div className="flex-1">
-              <input {...register('student_name', { required: true })} placeholder="Họ và tên học sinh" />
+              <input {...register('child_name', { required: true })} placeholder="Họ và tên học sinh" />
             </div>
             <div className="flex-1">
               <input
-                {...register('parent_phone', { pattern: PHONE_REGEX, required: true })}
+                {...register('represent_phone', { pattern: PHONE_REGEX, required: true })}
                 placeholder="Số điện thoại của phụ huynh"
               />
-              {errors.parent_phone && (
+              {errors.represent_phone && (
                 <div className="error msg" role="alert">
-                  {errors.parent_phone?.type === 'required' && `Vui lòng nhập thông tin của trường này!`}
-                  {errors.parent_phone?.type === 'pattern' && `Số điện thoại không hợp lệ!`}
+                  {errors.represent_phone?.type === 'required' && `Vui lòng nhập thông tin của trường này!`}
+                  {errors.represent_phone?.type === 'pattern' && `Số điện thoại không hợp lệ!`}
                 </div>
               )}
             </div>
             <div className="flex-1">
-              <input type="number" min={1} max={100} {...register('student_age')} placeholder="Bé hiện mấy tuổi" />
+              <input type="number" min={1} max={100} {...register('child_age')} placeholder="Bé hiện mấy tuổi" />
             </div>
             <div className="flex-1">
               <Controller

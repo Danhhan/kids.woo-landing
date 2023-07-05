@@ -16,3 +16,7 @@ export const INTEREST_COURSE = [
     value: 'write',
   },
 ]
+
+export const CONTACT_TYPE_WORK = 1
+export const CONTACT_TYPE_KID = 2
+export const UTM_ID_DEFAULT = 2;
