@@ -1,16 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
+
 import { colors } from 'styles/colors'
 import { media } from 'styles/media'
+// COMPs
 import Button from 'components/Button'
 import Select from 'components/Select'
 import { CloseIcon } from 'components/Svg'
 import { Modal } from 'components/Modal'
 import { isAxiosError } from 'utils/helpers'
 import { IErrorForm } from 'types/IErrorForm'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { IContactInput } from 'types/IContact'
-import { useMutation } from '@tanstack/react-query'
 import { createContactFn } from 'apis/contact.api'
 import { INTEREST_COURSE } from 'config/constants/contact'
 import { RegisterSuccessModal } from 'components/RegisterSuccessModal'
@@ -160,20 +162,7 @@ export const RegisterFormModal: React.FC = () => {
     formState: { errors },
     handleSubmit,
     control,
-  } = useForm<IContactInput>({
-    defaultValues: {
-      interest_course: null,
-      parent_email: null,
-      parent_name: null,
-      parent_phone: null,
-      skill_improvement: null,
-      student_age: null,
-      student_name: null,
-      utm_campaign: null,
-      utm_medium: null,
-      utm_source: null,
-    },
-  })
+  } = useForm<IContactInput>()
   const onSubmit: SubmitHandler<IContactInput> = (data) => {
     createContact(data)
   }
@@ -197,8 +186,8 @@ export const RegisterFormModal: React.FC = () => {
               <StyledForm onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col gap-[10px] content">
                   <div className="flex-1">
-                    <input {...register('parent_name', { required: true })} placeholder="Họ và tên" />
-                    {errors.parent_name && (
+                    <input {...register('represent_name', { required: true })} placeholder="Họ và tên" />
+                    {errors.represent_name && (
                       <div className="error msg" role="alert">
                         Vui lòng nhập thông tin của trường này!
                       </div>
@@ -206,13 +195,13 @@ export const RegisterFormModal: React.FC = () => {
                   </div>
                   <div className="flex-1">
                     <input
-                      {...register('parent_phone', { pattern: PHONE_REGEX, required: true })}
+                      {...register('represent_phone', { pattern: PHONE_REGEX, required: true })}
                       placeholder="Số điện thoại"
                     />
-                    {errors.parent_phone && (
+                    {errors.represent_phone && (
                       <div className="error msg" role="alert">
-                        {errors.parent_phone?.type === 'required' && `Vui lòng nhập thông tin của trường này!`}
-                        {errors.parent_phone?.type === 'pattern' && `Số điện thoại không hợp lệ!`}
+                        {errors.represent_phone?.type === 'required' && `Vui lòng nhập thông tin của trường này!`}
+                        {errors.represent_phone?.type === 'pattern' && `Số điện thoại không hợp lệ!`}
                       </div>
                     )}
                   </div>
