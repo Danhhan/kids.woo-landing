@@ -12,9 +12,21 @@ export const createContactFn = async (contactInput: IContactInput): Promise<any>
     course: contactInput?.interest_course,
     created_at: moment().format('YYYY-MM-DD'),
   }
-  const response = await clientRequest.post(
+
+  // const response = await clientRequest.post(
+  //   'https://script.google.com/macros/s/AKfycbwFfk2xBHVGWR1GxGUmru__nLIi-ujv7H7NmN3u-TQsLkkLqotKxKiy-p-8SiXCgn23/exec',
+  //   body,
+  // )
+  const response = await fetch(
     'https://script.google.com/macros/s/AKfycbwFfk2xBHVGWR1GxGUmru__nLIi-ujv7H7NmN3u-TQsLkkLqotKxKiy-p-8SiXCgn23/exec',
-    body,
+    {
+      redirect: 'follow',
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+    },
   )
-  return response.data?.data
+  return response
 }
