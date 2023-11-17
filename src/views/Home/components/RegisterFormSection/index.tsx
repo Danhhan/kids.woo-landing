@@ -16,6 +16,7 @@ import ErrorForm from 'components/ErrorForm'
 import { RegisterSuccessModal } from 'components/RegisterSuccessModal'
 import LoadingBtn from 'components/Button/LoadingBtn'
 import { PHONE_REGEX } from 'config/constants/form/validation'
+import moment from 'moment'
 
 const Wrapper = styled.div`
   background-color: #fff1d7;

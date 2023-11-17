@@ -1,7 +1,20 @@
+import moment from 'moment'
 import { IContactInput } from 'types/IContact'
 import clientRequest from 'utils/clientRequest'
 
-export const createContactFn = async (body: IContactInput): Promise<any> => {
-  const response = await clientRequest.post('api/contact', body)
+export const createContactFn = async (contactInput: IContactInput): Promise<any> => {
+  const body = {
+    parent_name: contactInput?.represent_name,
+    child_name: contactInput?.child_name,
+    child_age: contactInput?.child_age,
+    phone: contactInput?.represent_phone,
+    skills: contactInput?.skill_improvement,
+    course: contactInput?.interest_course,
+    created_at: moment().format('YYYY-MM-DD'),
+  }
+  const response = await clientRequest.post(
+    'https://script.google.com/macros/s/AKfycbwFfk2xBHVGWR1GxGUmru__nLIi-ujv7H7NmN3u-TQsLkkLqotKxKiy-p-8SiXCgn23/exec',
+    body,
+  )
   return response.data?.data
 }
