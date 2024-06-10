@@ -76,10 +76,7 @@ const Footer: React.FC = () => {
                 </span>
                 <div>
                   <SubTitle>Trụ sở chính</SubTitle>
-                  <p>
-                    Văn phòng Hồ Chí Minh: Tòa nhà hạng A Vincom Center Đồng Khởi, 72 Lê Thánh Tôn, Phường Bến Nghé,
-                    Quận 1, TP Hồ Chí Minh
-                  </p>
+                  <p>64 Bà Huyện Thanh Quan, Phường Võ Thị Sáu, Quận 3, Thành phố Hồ Chí Minh, Việt Nam</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">

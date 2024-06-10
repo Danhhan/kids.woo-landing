@@ -10,14 +10,15 @@ import Button from 'components/Button'
 import Select from 'components/Select'
 import { CloseIcon } from 'components/Svg'
 import { Modal } from 'components/Modal'
+import { RegisterSuccessModal } from 'components/RegisterSuccessModal'
+import ErrorForm from 'components/ErrorForm'
+import LoadingBtn from 'components/Button/LoadingBtn'
+
 import { isAxiosError } from 'utils/helpers'
 import { IErrorForm } from 'types/IErrorForm'
 import { IContactInput } from 'types/IContact'
 import { createContactFn } from 'apis/contact.api'
 import { INTEREST_COURSE } from 'config/constants/contact'
-import { RegisterSuccessModal } from 'components/RegisterSuccessModal'
-import ErrorForm from 'components/ErrorForm'
-import LoadingBtn from 'components/Button/LoadingBtn'
 import { PHONE_REGEX } from 'config/constants/form/validation'
 
 const Wrapper = styled.div`
